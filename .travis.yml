@@ -13,7 +13,24 @@ cache:
 
 script: "./gradlew clean build"
 
+before_deploy:
+  - zip -r vincent-example-aws *
+  - mkdir -p deploy
+  - mv vincent-example-aws.zip deploy/vincent-example-aws.zip
+
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: vincent-example-aws-build
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private
+    local_dir: deploy
+    wait-until-deployed: true
+
 notifications:
   email:
     recipients:
       - lawsnland@gmail.com
+
