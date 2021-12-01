@@ -5,8 +5,10 @@ import com.example.bootaws.web.dto.PostsResponseDto;
 import com.example.bootaws.web.dto.PostsSaveRequestDto;
 import com.example.bootaws.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RequiredArgsConstructor
 @RestController
 public class PostsApiController {
@@ -25,6 +27,9 @@ public class PostsApiController {
 
     @GetMapping("/api/v1/posts/{id}")
     public PostsResponseDto findById(@PathVariable Long id) {
-        return postsService.findById(id);
+
+        PostsResponseDto postsResponseDto = postsService.findById(id);
+        log.info(postsResponseDto.toString());
+        return postsResponseDto;
     }
 }
