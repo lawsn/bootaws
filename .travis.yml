@@ -28,6 +28,16 @@ deploy:
     acl: private
     local_dir: deploy
     wait-until-deployed: true
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: vincent-example-aws-build
+    key: vincent-example-aws.zip
+    bundle_type: zip
+    application: vincent-example-aws
+    deployment_group: vincent-example-aws
+    region: ap-northeast-2
+    wait-until-deployed: true
 
 notifications:
   email:
