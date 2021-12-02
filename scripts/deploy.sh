@@ -19,21 +19,25 @@ else
         echo "> kill -15 $CURRENT_PID"
         kill -15 $CURRENT_PID
         sleep 5
+
+
 fi
 
 echo "> deploy new application"
 
-JAR_NAME=$(ls -tr $REPOSITORY/*.jar | tail -n 1)
+
+JAR_NAME=$(ls -tr $REPOSITORY/ | grep jar | grep -v plain |
+tail -n 1)
 
 echo "> JAR Name: $JAR_NAME"
 
 echo "> add executable at $JAR_NAME"
 
-chmod +x $JAR_NAME
+chmod +x $REPOSITORY/$JAR_NAME
 
 echo "> execute $JAR_NAME"
 
 nohup java -jar \
         -Dspring.config.location=classpath:/application.properties,classpath:/application-real.properties,/home/ec2-user/app/application-real-db.properties \
         -Dspring.profiles.active=real \
-        $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
+        $REPOSITORY/$JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
