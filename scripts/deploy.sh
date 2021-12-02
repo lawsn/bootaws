@@ -25,7 +25,9 @@ fi
 
 echo "> deploy new application"
 
-JAR_NAME=$(ls -tr $REPOSITORY/ | grep jar | tail -n 1)
+
+JAR_NAME=$(ls -tr $REPOSITORY/ | grep jar | grep -v plain |
+tail -n 1)
 
 echo "> JAR Name: $JAR_NAME"
 
