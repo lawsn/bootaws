@@ -9,7 +9,7 @@ cp $REPOSITORY/zip/*.jar $REPOSITORY/
 
 echo "> check pid in running application"
 
-CURRENT_PID=$(pgrep -fl bootaws | grep jar | awk '{print $1}')
+CURRENT_PID=$(pgrep -fa bootaws | grep jar | awk '{print $1}')
 
 echo "running application pid: $CURRENT_PID"
 
@@ -26,8 +26,7 @@ fi
 echo "> deploy new application"
 
 
-JAR_NAME=$(ls -tr $REPOSITORY/ | grep jar | grep -v plain |
-tail -n 1)
+JAR_NAME=$(ls -tr $REPOSITORY/ | grep jar | grep -v plain | tail -n 1)
 
 echo "> JAR Name: $JAR_NAME"
 
