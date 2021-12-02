@@ -9,7 +9,7 @@ cp $REPOSITORY/zip/*.jar $REPOSITORY/
 
 echo "> check pid in running application"
 
-CURRENT_PID=$(pgrep -fl vincent-example-aws | grep jar | awk '{print $1}')
+CURRENT_PID=$(pgrep -fl bootaws | grep jar | awk '{print $1}')
 
 echo "running application pid: $CURRENT_PID"
 
