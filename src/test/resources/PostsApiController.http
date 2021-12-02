@@ -1,0 +1,9 @@
+POST http://ec2-54-180-5-71.ap-northeast-2.compute.amazonaws.com:8080/api/v1/posts
+content-type: application/json
+
+{
+  "title": "add title for me",
+  "content": "hi, everyone. i'm fine",
+  "author": "vincent"
+}
+
